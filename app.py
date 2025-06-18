@@ -10,12 +10,11 @@ import json
 # from streamlit_elements import elements, mui
 from jd_analyzer import analyze_job_description, format_requirements_for_display, parse_edited_requirements
 from resume_analyzer import analyze_resume
-
 # Load environment variables
 load_dotenv()
 
+st.set_page_config(layout="wide")
 # Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Initialize session state for API key verification
 if 'api_key_verified' not in st.session_state:
