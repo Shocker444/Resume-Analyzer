@@ -6,9 +6,6 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
 def analyze_job_description(job_description, model="gpt-4.1"):
     """
     Analyzes a job description using GPT-4 and extracts structured requirements.
@@ -18,6 +15,7 @@ def analyze_job_description(job_description, model="gpt-4.1"):
         job_description (str): The job description text to analyze
         model (str): The OpenAI model to use for analysis
     """
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     try:
         response = client.chat.completions.create(
             model=model,

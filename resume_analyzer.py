@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
 
 def analyze_resume(resume_text, requirements, model="o4-mini"):
     """
@@ -23,21 +23,22 @@ def analyze_resume(resume_text, requirements, model="o4-mini"):
             - additional_screening_criteria
         model (str): The OpenAI model to use for analysis
     """
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     try:
         # Format the requirements for the prompt
         requirements_str = f"""
-Original Job Description:
-{requirements.get('original_job_description', '')}
+        Original Job Description:
+        {requirements.get('original_job_description', '')}
 
-Must-Have Requirements:
-{json.dumps(requirements.get('must_have_requirements', {}), indent=2)}
+        Must-Have Requirements:
+        {json.dumps(requirements.get('must_have_requirements', {}), indent=2)}
 
-Good-to-Have Requirements:
-{json.dumps(requirements.get('good_to_have_requirements', {}), indent=2)}
+        Good-to-Have Requirements:
+        {json.dumps(requirements.get('good_to_have_requirements', {}), indent=2)}
 
-Additional Screening Criteria:
-{json.dumps(requirements.get('additional_screening_criteria', []), indent=2)}
-"""
+        Additional Screening Criteria:
+        {json.dumps(requirements.get('additional_screening_criteria', []), indent=2)}
+        """
         
         response = client.chat.completions.create(
             model=model,
