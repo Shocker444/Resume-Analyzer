@@ -533,7 +533,7 @@ model_1 = st.selectbox(
 
 model_2 = st.selectbox(
     "Choose a reasoning-focused model",
-    ["gpt-4.1", "o1-mini", "o1-preview", "o4-mini"]
+    ["o4-mini", "o1-mini", "o1-preview", "gpt-4.1"]
 )
 
 if st.button("Update Models"):
